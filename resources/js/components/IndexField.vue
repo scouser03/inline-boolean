@@ -28,8 +28,14 @@ export default {
             let value = this.value ? 1 : 0;
             formData.append(this.field.attribute, value);
             formData.append('_method', 'PUT');
-            return Nova.request().post(`/nova-api/${this.resourceName}/${this.resourceId}`, formData)
-                .then(() => value ? Nova.success('turn on !') : Nova.error('turn off !'))
+
+            return Nova.request().post(`/inline-boolean/update/${this.resourceName}`,
+                {
+                    id: this.resourceId,
+                    attribute: this.field.attribute,
+                    value: value
+                }
+            ).then(() => value ? Nova.success('turn on !') : Nova.error('turn off !'))
         },
     },
 }
