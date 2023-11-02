@@ -1,6 +1,9 @@
 <template>
   <div :class="`text-${field.textAlign}`">
-      <IconBoolean @click="toggleHandle" :value="value" />
+      <IconBoolean
+          :class="{'cursor-pointer-n hover:text-white': ! field.readonly }"
+          @click="toggleHandle"
+          :value="value" />
   </div>
 
 </template>
@@ -23,6 +26,9 @@ export default {
     },
     methods: {
         toggleHandle() {
+            if(this.field.readonly){
+              return;
+            }
             let formData = new FormData();
             this.value = !this.value
             let value = this.value ? 1 : 0;
