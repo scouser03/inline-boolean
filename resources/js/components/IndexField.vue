@@ -1,7 +1,7 @@
 <template>
   <div :class="`text-${field.textAlign}`">
       <IconBoolean
-          :class="{'cursor-pointer-n hover:text-white': ! field.readonly }"
+          :class="{'cursor-pointer hover:text-white': ! field.readonly }"
           @click="toggleHandle"
           :value="value" />
   </div>
